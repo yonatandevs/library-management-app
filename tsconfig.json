@@ -11,7 +11,9 @@
     "sourceMap": true,                        // Generate source maps for debugging
     "moduleResolution": "node",              // Use Node.js resolution strategy
     "resolveJsonModule": true,                // Enable importing JSON modules
-    "allowSyntheticDefaultImports": true     // Allow default imports with Babel/Webpack
+    "allowSyntheticDefaultImports": true ,    // Allow default imports with Babel/Webpack
+     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
   "include": ["src"],                         // Include the source folder
   "exclude": ["node_modules", "dist"]         // Exclude unnecessary folders

@@ -8,7 +8,12 @@
     "server": "pm2 start dist/server.js --watch",
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc -p .",
-    "test": "jest --coverage --runInBand --detectOpenHandles --forceExit "
+    "test": "jest --coverage --runInBand --detectOpenHandles --forceExit ",
+    "migration:generate": "npx typeorm migration:generate -d ./dist/database/index.js -o ./dist/migrations/migrated",
+    "migration:run": "npx typeorm migration:run",
+    "migration:revert": "npx typeorm migration:revert",
+    "dev-migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/database/index.ts -o ./src/migrations/migrated",
+    "dev-migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/database/index.ts"
   },
   "repository": {
     "type": "git",
@@ -31,7 +36,9 @@
     "express-validator": "^7.2.0",
     "knex": "^3.1.0",
     "morgan": "^1.10.0",
+    "mysql2": "^3.11.5",
     "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.5"
   },
   "devDependencies": {
@@ -41,6 +48,8 @@
     "@types/node": "^22.10.1",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typeorm": "^0.3.20",
     "typescript": "^5.7.2"
   }
 }
