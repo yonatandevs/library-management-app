@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import "reflect-metadata";
 import cors from "cors";
 //import routes from "./routes/index"; // Centralized route imports
 import { errorMiddleware } from "./middlewares/error.middleware";
@@ -17,7 +18,7 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 app.use(cors()); // Enable CORS
 app.use(morgan("dev")); // Logging requests
-
+//Custom Middlewares
 // Health check endpoint
 app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({ status: "UP", message: "API is running!" });
