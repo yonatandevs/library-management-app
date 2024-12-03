@@ -5,7 +5,10 @@ import "reflect-metadata";
 import cors from "cors";
 //import routes from "./routes/index"; // Centralized route imports
 import { errorMiddleware } from "./middlewares/error.middleware";
-
+import UserRoutes from "./routes/user.routes";
+import BookRoutes from "./routes/book.routes";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./configs/swagger.config";
 // Load environment variables
 dotenv.config({
   path: "./config.env",
@@ -14,18 +17,21 @@ dotenv.config({
 const app: Application = express();
 
 // Middleware setup
-app.use(express.json()); // Parse JSON request bodies
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
-app.use(cors()); // Enable CORS
-app.use(morgan("dev")); // Logging requests
-//Custom Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(morgan("dev"));
+
 // Health check endpoint
 app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({ status: "UP", message: "API is running!" });
 });
 
 // API routes
-// app.use("/api", routes);
+//We can add API version here for scalability
+app.use("/users", UserRoutes);
+app.use("/books", BookRoutes);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 404 handler for unmatched routes
 app.use((req: Request, res: Response) => {

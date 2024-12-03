@@ -10,9 +10,12 @@ const AppDataSource = new DataSource({
   username: DB_CONFIG.username,
   password: DB_CONFIG.password,
   database: DB_CONFIG.database,
-  synchronize: false,
+  synchronize: true,
   logging: false,
-  entities: ["dist/models/*.js"], // compiled models
+  entities:
+    process.env.NODE_ENV === "production"
+      ? ["dist/models/*.js"]
+      : ["src/models/*.ts"],
   migrations:
     process.env.NODE_ENV === "production"
       ? ["dist/migrations/*.js"]

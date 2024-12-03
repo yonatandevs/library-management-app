@@ -7,6 +7,7 @@ export const STATUS_CODES = {
   FORBIDDEN: 403,
   NOT_FOUND: 404,
   INTERNAL_ERROR: 500,
+  CONFLICT: 409,
 };
 
 export const SUCCESS_STATUS_CODES = new Set([
