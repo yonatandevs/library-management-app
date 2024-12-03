@@ -15,44 +15,44 @@ Setup Instructions
    cd library-management-app
 2. Install Dependencies
    Install the required packages:
+   npm install
+3. Configure the Environment Variables
+   Create a .env file in the root directory of the project and configure the following variables:
 
-npm install 3. Configure the Environment Variables
-Create a .env file in the root directory of the project and configure the following variables:
-
-env
-NODE_ENV=development
-PORT=3003
-DB_HOST=localhost
-DB_PORT=3306
-DB_USERNAME=root
-DB_PASSWORD=your_password
-DB_DATABASE=library_management
-Replace your_password with your actual MySQL password.
+   env
+   NODE_ENV=development
+   PORT=3003
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   DB_DATABASE=library_management
+   Replace your_password with your actual MySQL password.
 
 4. Set Up the Database
    Create the database:
    Manually create the library database in MySQL or use the following command in your MySQL CLI:
+   sql
+   CREATE DATABASE library_management;
+   Run Migrations:
+   Generate the database schema by running migrations:
+   npm run migration:run
 
-sql
-CREATE DATABASE library_management;
-Run Migrations:
-Generate the database schema by running migrations:
-
-npm run migration:run 5. Build the Project
-Compile the TypeScript code into JavaScript:
-
-npm run build 6. Start the Server
-Development Mode
-To run the application in development mode with hot-reloading:
-npm run dev
-Production Mode
-To run the application in production mode:
-npm run start
-With PM2
-To use PM2 for managing the application:
-npm run server
-API Documentation
-The application uses Swagger for API documentation.
+5. Build the Project
+   Compile the TypeScript code into JavaScript:
+   npm run build
+6. Start the Server
+   Development Mode
+   To run the application in development mode with hot-reloading:
+   npm run dev
+   Production Mode
+   To run the application in production mode:
+   npm run start
+   With PM2
+   To use PM2 for managing the application:
+   npm run server
+   API Documentation
+   The application uses Swagger for API documentation.
 
 Start the server.
 Open your browser and go to:
