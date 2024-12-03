@@ -5,6 +5,7 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  Index,
 } from "typeorm";
 import { Borrowing } from "./borrowing.model";
 

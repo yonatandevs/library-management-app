@@ -11,17 +11,17 @@ import {
 import { VALIDATION_TYPE } from "../constants/validation-type";
 const bookController = container.get<BookController>(TYPES.BookController);
 const router = Router();
+router.get("/", bookController.listBooks.bind(bookController));
 router.get(
-  "/",
+  "/:id",
   ValidatorMiddleware([
     {
       property: VALIDATION_TYPE.PARAMS,
       schema: getBookParamsSchema,
     },
   ]),
-  bookController.listBooks.bind(bookController)
+  bookController.getBook.bind(bookController)
 );
-router.get("/:id", bookController.getBook.bind(bookController));
 router.post(
   "/",
   ValidatorMiddleware([

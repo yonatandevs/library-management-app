@@ -11,7 +11,8 @@ import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./configs/swagger.config";
 import { STATUS_CODES } from "./constants/status-codes";
 import { ERROR_MESSAGES } from "./constants/messages";
-
+import helmet from "helmet";
+import compression from "compression";
 dotenv.config({
   path: "./config.env",
 });
@@ -23,7 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan("dev"));
+app.use(helmet());
+app.use(compression());
 
+//we will add auth , rate limit , security and other  middleware here
 // Health check endpoint
 app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({ status: "UP", message: "API is running!" });
@@ -33,7 +37,7 @@ app.get("/health", (req: Request, res: Response) => {
 //We can add API version here for scalability but we have to go  with the requirement
 app.use("/users", UserRoutes);
 app.use("/books", BookRoutes);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 404 handler for unmatched routes
 app.use((req: Request, res: Response) => {

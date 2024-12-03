@@ -18,8 +18,6 @@ class BorrowingRepository {
   }
 
   async save(borrowing: Borrowing) {
-    console.log(borrowing);
-
     return this.repository.save(borrowing);
   }
 
