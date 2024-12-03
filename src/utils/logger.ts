@@ -1,4 +1,3 @@
-// src/utils/logger.ts
 import winston from "winston";
 
 const { combine, timestamp, printf, errors } = winston.format;

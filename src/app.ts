@@ -3,13 +3,15 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import "reflect-metadata";
 import cors from "cors";
-//import routes from "./routes/index"; // Centralized route imports
+
 import { errorMiddleware } from "./middlewares/error.middleware";
 import UserRoutes from "./routes/user.routes";
 import BookRoutes from "./routes/book.routes";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./configs/swagger.config";
-// Load environment variables
+import { STATUS_CODES } from "./constants/status-codes";
+import { ERROR_MESSAGES } from "./constants/messages";
+
 dotenv.config({
   path: "./config.env",
 });
@@ -28,14 +30,16 @@ app.get("/health", (req: Request, res: Response) => {
 });
 
 // API routes
-//We can add API version here for scalability
+//We can add API version here for scalability but we have to go  with the requirement
 app.use("/users", UserRoutes);
 app.use("/books", BookRoutes);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 404 handler for unmatched routes
 app.use((req: Request, res: Response) => {
-  res.status(404).json({ error: "Route not found" });
+  res
+    .status(STATUS_CODES.NOT_FOUND)
+    .json({ error: ERROR_MESSAGES.USER_NOT_FOUND });
 });
 
 // Centralized error handling

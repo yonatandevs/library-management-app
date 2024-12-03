@@ -1,7 +1,7 @@
 import app from "./app";
 import { APP_CONFIG } from "./configs/app.config";
 import { AppDataSource } from "./database";
-import { logger } from "./utils/logger"; // Importing Winston logger
+import { logger } from "./utils/logger";
 
 const PORT = APP_CONFIG.port || 3000;
 

@@ -1,5 +1,3 @@
-// src/constants/messages.ts
-
 export const SUCCESS_MESSAGES = {
   DATABASE_CONNECTED: "DB connected successfully.",
   OPERATION_COMPLETED: "Operation completed successfully.",

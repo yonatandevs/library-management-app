@@ -7,7 +7,6 @@ class AppError extends Error {
     this.statusCode = statusCode;
     this.errorData = errorData;
 
-    // Maintain the stack trace for debugging
     Error.captureStackTrace(this, this.constructor);
   }
 }

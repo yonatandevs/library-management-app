@@ -19,7 +19,7 @@ const AppDataSource = new DataSource({
   migrations:
     process.env.NODE_ENV === "production"
       ? ["dist/migrations/*.js"]
-      : ["src/migrations/*.ts"], // conditional migration paths
+      : ["src/migrations/*.ts"],
 });
 
 AppDataSource.initialize()
