@@ -20,14 +20,14 @@ export class Borrowing {
   @ManyToOne(() => Book, (book) => book.borrowings)
   book!: Book;
 
-  @Column()
+  @CreateDateColumn()
   borrowedAt!: Date;
 
   @Column({ nullable: true })
-  returnedAt!: Date;
+  returnedAt?: Date;
 
-  @Column({ nullable: true })
-  dueDate!: Date;
+  @Column({ nullable: true, type: "int" })
+  userScore!: number;
 
   @CreateDateColumn()
   createdAt!: Date;

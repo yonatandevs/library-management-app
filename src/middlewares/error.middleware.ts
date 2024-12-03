@@ -3,6 +3,7 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError";
 import ResponseHandler from "../utils/response-handler"; // Import the ResponseHandler
+import { ERROR_MESSAGES } from "../constants/messages";
 
 const errorMiddleware = (
   error: any,
@@ -11,21 +12,28 @@ const errorMiddleware = (
   next: NextFunction
 ) => {
   const statusCode = error.statusCode || 500;
-  const message = error.message || "Internal Server Error";
+  const message = error.message || ERROR_MESSAGES.INTERNAL_SERVER_ERROR;
   const errorDetails = error.errorData || null;
 
   // Check if the error is a custom AppError
   if (error instanceof AppError) {
-    return ResponseHandler.sendResponse(res, statusCode, message, errorDetails);
+    return ResponseHandler.sendResponse({
+      res,
+      statusCode,
+      message,
+      data: null,
+      error: errorDetails,
+    });
   }
 
   // For unexpected errors, send a generic message using ResponseHandler
-  return ResponseHandler.sendResponse(
+  return ResponseHandler.sendResponse({
     res,
-    500,
-    "Something went wrong. Internal server error.",
-    null
-  );
+    statusCode: 500,
+    message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+    data: null,
+    error: errorDetails,
+  });
 };
 
 export { errorMiddleware };

@@ -7,7 +7,6 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Borrowing } from "./borrowing.model";
-import { Rating } from "./rating.model";
 
 @Entity()
 export class Book {
@@ -15,19 +14,16 @@ export class Book {
   id!: number;
 
   @Column()
-  title!: string;
+  name!: string;
 
-  @Column()
-  author!: string;
+  @Column({ nullable: true })
+  author?: string;
 
-  @Column("decimal", { precision: 3, scale: 2, default: 0 })
-  averageRating!: number;
+  @Column("decimal", { precision: 3, scale: 2, nullable: true, default: null })
+  score?: number;
 
   @OneToMany(() => Borrowing, (borrowing: Borrowing) => borrowing.book)
-  borrowings!: Borrowing[];
-
-  @OneToMany(() => Rating, (rating: Rating) => rating.book)
-  ratings!: Rating[];
+  borrowings?: Borrowing[];
 
   @CreateDateColumn()
   createdAt!: Date;
