@@ -1,6 +1,5 @@
 import Joi from "joi";
 
-// Schema for creating a book
 export const createBookSchema = Joi.object({
   name: Joi.string().required().min(3).messages({
     "string.empty": "Name is required",
@@ -8,7 +7,15 @@ export const createBookSchema = Joi.object({
   }),
 });
 
-// Schema for borrowing a book
+export const getBookParamsSchema = Joi.object({
+  id: Joi.number().integer().min(1).required().messages({
+    "number.base": "ID must be a number",
+    "number.integer": "ID must be an integer",
+    "number.min": "ID must be at least 1",
+    "any.required": "ID is required",
+  }),
+});
+
 export const borrowBookSchema = Joi.object({
   userId: Joi.number().integer().required().messages({
     "number.base": "User ID must be a number",
@@ -20,7 +27,6 @@ export const borrowBookSchema = Joi.object({
   }),
 });
 
-// Schema for returning a book
 export const returnBookBodySchema = Joi.object({
   score: Joi.number().min(0).max(10).required().messages({
     "number.base": "Score must be a valid number.",

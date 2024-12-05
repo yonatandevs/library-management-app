@@ -17,7 +17,19 @@ describe("UserService", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+  it("should fetch all users", async () => {
+    const mockUsers: any = [
+      { id: 1, name: "Alice" },
+      { id: 2, name: "Bob" },
+    ];
 
+    userRepository.findAll.mockResolvedValue(mockUsers);
+
+    const users = await userService.getAllUsers();
+
+    expect(userRepository.findAll).toHaveBeenCalledTimes(1);
+    expect(users).toEqual(mockUsers);
+  });
   it("should fetch a user by ID with past and present books", async () => {
     const mockUser = {
       id: 1,

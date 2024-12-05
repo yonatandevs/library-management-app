@@ -14,16 +14,18 @@ const container = new Container();
 
 // Bind Repository
 container.bind<UserRepository>(TYPES.UserRepository).to(UserRepository);
-container.bind(TYPES.BookRepository).to(BookRepository);
-container.bind(TYPES.BorrowingRepository).to(BorrowingRepository);
+container.bind<BookRepository>(TYPES.BookRepository).to(BookRepository);
+container
+  .bind<BorrowingRepository>(TYPES.BorrowingRepository)
+  .to(BorrowingRepository);
 
 // Bind Service
 container.bind<UserService>(TYPES.UserService).to(UserService);
-container.bind(TYPES.BookService).to(BookService);
-container.bind(TYPES.BorrowingService).to(BorrowingService);
+container.bind<BookService>(TYPES.BookService).to(BookService);
+container.bind<BorrowingService>(TYPES.BorrowingService).to(BorrowingService);
 
 // Bind Controller
 container.bind<UserController>(TYPES.UserController).to(UserController);
-container.bind(TYPES.BookController).to(BookController);
+container.bind<BookController>(TYPES.BookController).to(BookController);
 
 export default container;

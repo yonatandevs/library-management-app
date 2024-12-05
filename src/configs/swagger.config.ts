@@ -21,8 +21,8 @@ const swaggerDefinition = {
 // Options for swagger-jsdoc
 const options = {
   definition: swaggerDefinition,
-  // Path to the API specs (this includes your route files)
-  apis: ["./src/routes/**/*.ts", "./src/models/**/*.ts"], // You can include route files here
+  // Path to the API specs
+  apis: ["./src/routes/**/*.ts", "./src/models/**/*.ts"],
 };
 
 // Initialize swagger-jsdoc

@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
   username: DB_CONFIG.username,
   password: DB_CONFIG.password,
   database: DB_CONFIG.database,
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities:
     process.env.NODE_ENV === "production"
@@ -19,13 +19,11 @@ const AppDataSource = new DataSource({
   migrations:
     process.env.NODE_ENV === "production"
       ? ["dist/migrations/*.js"]
-      : ["src/migrations/*.ts"], // conditional migration paths
+      : ["src/migrations/*.ts"],
 });
 
 AppDataSource.initialize()
-  .then(() => {
-    console.log(SUCCESS_MESSAGES.DATABASE_CONNECTED);
-  })
+  .then(() => {})
   .catch((err) => console.error(ERROR_MESSAGES.DATABASE_ERROR, err));
 
 export { AppDataSource };

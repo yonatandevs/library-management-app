@@ -71,8 +71,6 @@ class BookController {
       await this.borrowingService.borrowBook(Number(userId), Number(bookId));
       ResponseHandler.noContent({ res });
     } catch (error) {
-      console.log(error);
-
       next(error);
     }
   };

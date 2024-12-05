@@ -26,8 +26,6 @@ class BorrowingService {
     const existingBorrowing =
       await this.borrowingRepository.findActiveBorrowing(bookId);
 
-    console.log(existingBorrowing, bookId);
-
     if (existingBorrowing) {
       throw new AppError(STATUS_CODES.CONFLICT, "Book is already borrowed.");
     }
@@ -46,7 +44,6 @@ class BorrowingService {
       userId,
       bookId
     );
-    console.log("borrowing", borrowing);
 
     if (!borrowing) {
       throw new AppError(STATUS_CODES.NOT_FOUND, "No active borrowing found.");
@@ -73,9 +70,9 @@ class BorrowingService {
       0
     );
     const averageRating = totalScore / borrowings.length;
-    console.log("avarage", averageRating);
 
     const book = await this.bookRepository.findById(bookId);
+
     if (book) {
       book.score = averageRating;
       await this.bookRepository.update(book);

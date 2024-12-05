@@ -1,9 +1,8 @@
-// src/middleware/errorMiddleware.ts
-
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError";
 import ResponseHandler from "../utils/response-handler"; // Import the ResponseHandler
 import { ERROR_MESSAGES } from "../constants/messages";
+import { logger } from "../utils/logger";
 
 const errorMiddleware = (
   error: any,
@@ -25,7 +24,7 @@ const errorMiddleware = (
       error: errorDetails,
     });
   }
-
+  logger.error(error);
   // For unexpected errors, send a generic message using ResponseHandler
   return ResponseHandler.sendResponse({
     res,

@@ -1,5 +1,3 @@
-// src/constants/messages.ts
-
 export const SUCCESS_MESSAGES = {
   DATABASE_CONNECTED: "DB connected successfully.",
   OPERATION_COMPLETED: "Operation completed successfully.",
@@ -17,6 +15,7 @@ export const ERROR_MESSAGES = {
   INVALID_CREDENTIALS: "Invalid credentials provided.",
   DATABASE_ERROR: "There was an error connecting to the database.",
   INTERNAL_SERVER_ERROR: "Something went wrong.Internal server error.",
+  ROUTE_NOT_FOUND: "Route not found",
 };
 
 export const FAILURE_MESSAGES = {
