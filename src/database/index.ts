@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
   username: DB_CONFIG.username,
   password: DB_CONFIG.password,
   database: DB_CONFIG.database,
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities:
     process.env.NODE_ENV === "production"
@@ -23,9 +23,7 @@ const AppDataSource = new DataSource({
 });
 
 AppDataSource.initialize()
-  .then(() => {
-    console.log(SUCCESS_MESSAGES.DATABASE_CONNECTED);
-  })
+  .then(() => {})
   .catch((err) => console.error(ERROR_MESSAGES.DATABASE_ERROR, err));
 
 export { AppDataSource };
